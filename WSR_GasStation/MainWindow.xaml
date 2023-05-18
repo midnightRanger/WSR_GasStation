@@ -5,35 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WSR_GasStation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="800">
+        Title="MainWindow" Height="650" Width="800">
     <Grid>
         <!--<DataGrid x:Name="stations" Margin="10" > </DataGrid>-->
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="35" />
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="15" />
+        
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -63,10 +63,10 @@
         <Label Grid.Row="11" Grid.Column="1" Content="АИ-98 цена: " ></Label>
         <TextBox x:Name="ai98CostTb" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
 
-        <Label Grid.Row="13" Grid.Column="1" Content="ДТ Цена: " ></Label>
+        <Label Grid.Row="13" Grid.Column="1" Content="Остаток АИ-98 в хранилище в литрах: " ></Label>
         <TextBox x:Name="ai98OstatokTB" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
 
-        <Label Grid.Row="15" Grid.Column="1" Content="Остаток ДТ в хранилище в литрах: " ></Label>
+        <Label Grid.Row="15" Grid.Column="1" Content="Цена литра ДТ в рублях: " ></Label>
         <TextBox x:Name="aiDTCostTB" Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
 
         <Label Grid.Row="17" Grid.Column="1" Content="Остаток ДТ в хранилище в литрах: " ></Label>

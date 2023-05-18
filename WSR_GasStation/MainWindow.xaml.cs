@@ -60,8 +60,8 @@ namespace WSR_GasStation
 
             station = db.Station.Include(s => s.StationInfos).FirstOrDefault(s => s.ID_Station == id);
 
-            fillTb(station); 
-            
+            fillTb(station);
+
 
         }
 
@@ -108,6 +108,8 @@ namespace WSR_GasStation
             else {
                 CleanFields(); 
             }
+
+            addressTB.Text = station.Address; 
         }
 
         public void CleanFields() {
@@ -124,71 +126,92 @@ namespace WSR_GasStation
             aiDTOstatokTB.Text = "";
         }
 
+        public bool isEmpty(string str) => String.IsNullOrWhiteSpace(str) && String.IsNullOrEmpty(str);
+
+        public bool isEmptyFields() 
+        {
+            if (isEmpty(ai98CostTb.Text) || isEmpty(ai98OstatokTB.Text) ||
+                 isEmpty(ai95OstatokTB.Text) || isEmpty(ai95OstatokTB.Text) ||
+                 isEmpty(ai92OstatokTB.Text) || isEmpty(ai92CostTB.Text) || isEmpty(aiDTCostTB.Text) || isEmpty(aiDTOstatokTB.Text)) return true;
+            return false; 
+        }
+
         private void sendChangesBTN_Click(object sender, RoutedEventArgs e)
         {
-
-            if (station == null)
+            if (!isEmptyFields())
             {
 
-
-                Station newStation = new Station()
+                if (station == null)
                 {
-                    Address = addressTB.Text
-                };
-
-                db.Add(newStation); 
-
-                db.SaveChanges();
-
-                db.StationInfo.Add(new StationInfo() { Name = "92", AmountOfFuel = Convert.ToInt32(ai92OstatokTB.Text), Price = Convert.ToInt32(ai92CostTB.Text), StationId = newStation.ID_Station });
-                db.StationInfo.Add(new StationInfo() { Name = "95", AmountOfFuel = Convert.ToInt32(ai95OstatokTB.Text), Price = Convert.ToInt32(ai95CostTb.Text), StationId = newStation.ID_Station });
-                db.StationInfo.Add(new StationInfo() { Name = "98", AmountOfFuel = Convert.ToInt32(ai98OstatokTB.Text), Price = Convert.ToInt32(ai98CostTb.Text), StationId = newStation.ID_Station });
-                db.StationInfo.Add(new StationInfo() { Name = "Disel Fuel", AmountOfFuel = Convert.ToInt32(aiDTOstatokTB.Text), Price = Convert.ToInt32(aiDTCostTB.Text), StationId = newStation.ID_Station });
-
-                db.SaveChanges();
-            }
-            else {
-
-                foreach (var info in station.StationInfos) {
-                    switch (info.Name)
+                    Station newStation = new Station()
                     {
-                        case "92":
-                            {
-                                info.Price = Convert.ToDouble(ai92CostTB.Text);
-                                info.AmountOfFuel = Convert.ToInt32(ai92OstatokTB.Text); 
-                            }
-                            break;
+                        Address = addressTB.Text
+                    };
 
-                        case "95":
-                            {
-                                info.Price = Convert.ToDouble(ai95CostTb.Text);
-                                info.AmountOfFuel = Convert.ToInt32(ai95OstatokTB.Text);
-                            }
-                            break;
+                    db.Add(newStation);
 
-                        case "98":
-                            {
-                                info.Price = Convert.ToDouble(ai98CostTb.Text);
-                                info.AmountOfFuel = Convert.ToInt32(ai98OstatokTB.Text);
-                            }
-                            break;
+                    db.SaveChanges();
 
-                        case "Disel Fuel":
-                            {
-                                info.Price = Convert.ToDouble(aiDTCostTB.Text);
-                                info.AmountOfFuel = Convert.ToInt32(aiDTOstatokTB.Text);
-                            }
-                            break;
+                    db.StationInfo.Add(new StationInfo() { Name = "92", AmountOfFuel = Convert.ToInt32(ai92OstatokTB.Text), Price = Convert.ToInt32(ai92CostTB.Text), StationId = newStation.ID_Station });
+                    db.StationInfo.Add(new StationInfo() { Name = "95", AmountOfFuel = Convert.ToInt32(ai95OstatokTB.Text), Price = Convert.ToInt32(ai95CostTb.Text), StationId = newStation.ID_Station });
+                    db.StationInfo.Add(new StationInfo() { Name = "98", AmountOfFuel = Convert.ToInt32(ai98OstatokTB.Text), Price = Convert.ToInt32(ai98CostTb.Text), StationId = newStation.ID_Station });
+                    db.StationInfo.Add(new StationInfo() { Name = "Disel Fuel", AmountOfFuel = Convert.ToInt32(aiDTOstatokTB.Text), Price = Convert.ToInt32(aiDTCostTB.Text), StationId = newStation.ID_Station });
+
+                    db.SaveChanges();
+
+                    MessageBox.Show("Данные добавлены!", "Уведомление", MessageBoxButton.OK); 
+                }
+                else
+                {
+
+                    foreach (var info in station.StationInfos)
+                    {
+                        switch (info.Name)
+                        {
+                            case "92":
+                                {
+                                    info.Price = Convert.ToDouble(ai92CostTB.Text);
+                                    info.AmountOfFuel = Convert.ToInt32(ai92OstatokTB.Text);
+                                }
+                                break;
+
+                            case "95":
+                                {
+                                    info.Price = Convert.ToDouble(ai95CostTb.Text);
+                                    info.AmountOfFuel = Convert.ToInt32(ai95OstatokTB.Text);
+                                }
+                                break;
+
+                            case "98":
+                                {
+                                    info.Price = Convert.ToDouble(ai98CostTb.Text);
+                                    info.AmountOfFuel = Convert.ToInt32(ai98OstatokTB.Text);
+                                }
+                                break;
+
+                            case "Disel Fuel":
+                                {
+                                    info.Price = Convert.ToDouble(aiDTCostTB.Text);
+                                    info.AmountOfFuel = Convert.ToInt32(aiDTOstatokTB.Text);
+                                }
+                                break;
+                        }
+
+                        station.Address = addressTB.Text;
+
+                        db.StationInfo.UpdateRange(station.StationInfos);
+
+                        db.Station.Update(station);
+                        db.SaveChanges();
+
+                        MessageBox.Show("Данные обновлены!", "Уведомление", MessageBoxButton.OK);
                     }
 
-                    station.Address = addressTB.Text; 
 
-                    db.StationInfo.UpdateRange(station.StationInfos);
-
-                    db.Station.Update(station);
                 }
-                
-               
+            }
+            else {
+                MessageBox.Show("Одно или несколько полей не заполнены!", "Проблема!", MessageBoxButton.OK); 
             }
         }
     }
