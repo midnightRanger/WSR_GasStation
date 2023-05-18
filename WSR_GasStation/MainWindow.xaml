@@ -27,7 +27,12 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="50"/>
             <RowDefinition Height="20" />
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
@@ -43,7 +48,6 @@
         <TextBox x:Name="stationIdTB" Grid.Row="1" Grid.Column="1"></TextBox>
         <Button x:Name="receiveDataBTN" Grid.Row="1" Grid.Column="2" Content="Загрузить данные" Click="receiveDataBTN_Click"></Button>
         
-        <TextBox x:Name="addressTB" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" ></TextBox>
         <Label Grid.Row="3" Grid.Column="1" Content="АИ-92 Цена: " ></Label>
         <TextBox x:Name="ai92CostTB" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
 
@@ -59,7 +63,18 @@
         <Label Grid.Row="11" Grid.Column="1" Content="АИ-98 цена: " ></Label>
         <TextBox x:Name="ai98CostTb" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
 
-        <Label Grid.Row="13" Grid.Column="1" Content="Остаток АИ-98 в хранилище в литрах: " ></Label>
+        <Label Grid.Row="13" Grid.Column="1" Content="ДТ Цена: " ></Label>
         <TextBox x:Name="ai98OstatokTB" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
+
+        <Label Grid.Row="15" Grid.Column="1" Content="Остаток ДТ в хранилище в литрах: " ></Label>
+        <TextBox x:Name="aiDTCostTB" Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
+
+        <Label Grid.Row="17" Grid.Column="1" Content="Остаток ДТ в хранилище в литрах: " ></Label>
+        <TextBox x:Name="aiDTOstatokTB" Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
+
+        <Label Grid.Row="19" Grid.Column="1" Content="Адрес: " ></Label>
+        <TextBox x:Name="addressTB" Grid.Row="19" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
+
+        <Button x:Name="sendChangesBTN" Grid.Row="21" Grid.Column="2" Content="Сохранить изменения" Click="sendChangesBTN_Click" ></Button>
     </Grid>
 </Window>
