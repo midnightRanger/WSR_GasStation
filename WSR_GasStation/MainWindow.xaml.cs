@@ -23,6 +23,8 @@ namespace WSR_GasStation
     public partial class MainWindow : Window
     {
         StationDbContext db;  
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,14 +33,69 @@ namespace WSR_GasStation
 
             db.Station.Load();
 
-            stations.ItemsSource = db.Station.ToList();
-            stations.SelectedValuePath = "ID_Station";
-            stations.CanUserAddRows = false;
-            stations.CanUserDeleteRows = false;
-            stations.SelectionMode = DataGridSelectionMode.Single;
+            //stations.ItemsSource = db.Station.ToList();
+            //stations.SelectedValuePath = "ID_Station";
+            //stations.CanUserAddRows = false;
+            //stations.CanUserDeleteRows = false;
+            //stations.SelectionMode = DataGridSelectionMode.Single;
 
         }
 
+        private void receiveDataBTN_Click(object sender, RoutedEventArgs e) 
+        {
+            int id = 0; 
+            try
+            {
+                id = Convert.ToInt32(stationIdTB.Text);
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Что-то пошло не так. Ошибка: {ex.Message}" , "Ошибка!", MessageBoxButton.OK);
+                stationIdTB.Text = "";
+            }
 
+            if (id > 99 || id < 1) {
+                MessageBox.Show($"Значение ID должно быть от 1 до 99", "Ошибка!", MessageBoxButton.OK);
+            }
+
+            Station station = db.Station.Include(s => s.StationInfos).FirstOrDefault(s => s.ID_Station == id);
+
+            if (station != null) { fillTb(station); }
+            
+            
+
+
+            
+
+        }
+
+        public void fillTb(Station station) {
+            
+            foreach (var info in station.StationInfos) {
+                switch (info.Name) {
+
+                    case "92": {
+                            ai92CostTB.Text = info.Price.ToString();
+                            ai92OstatokTB.Text = info.AmountOfFuel.ToString();
+                        } break;
+
+                    case "95":
+                        {
+                            ai95CostTb.Text = info.Price.ToString();
+                            ai95OstatokTB.Text = info.AmountOfFuel.ToString();
+                        }
+                        break;
+
+                    case "98":
+                        {
+                            ai98CostTb.Text = info.Price.ToString();
+                            ai98OstatokTB.Text = info.AmountOfFuel.ToString();
+                        }
+                        break;
+                }
+
+            }
+        }
+
+    
     }
 }

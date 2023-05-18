@@ -5,11 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WSR_GasStation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="800">
     <Grid>
-        <DataGrid x:Name="stations" Margin="10" >
-            
+        <!--<DataGrid x:Name="stations" Margin="10" > </DataGrid>-->
 
-        </DataGrid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20" />
+            <RowDefinition/>
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition/>
+
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="stationIdTB" Grid.Row="1" Grid.Column="1"></TextBox>
+        <Button x:Name="receiveDataBTN" Grid.Row="1" Grid.Column="2" Content="Загрузить данные" Click="receiveDataBTN_Click"></Button>
+        
+        <TextBox x:Name="addressTB" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" ></TextBox>
+        <Label Grid.Row="3" Grid.Column="1" Content="АИ-92 Цена: " ></Label>
+        <TextBox x:Name="ai92CostTB" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
+
+        <Label Grid.Row="5" Grid.Column="1" Content="Остаток АИ-92 в хранилище в литрах: " ></Label>
+        <TextBox x:Name="ai92OstatokTB" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
+        
+        <Label Grid.Row="7" Grid.Column="1" Content="АИ-95 цена: " ></Label>
+        <TextBox x:Name="ai95CostTb" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
+
+        <Label Grid.Row="9" Grid.Column="1" Content="Остаток АИ-95 в хранилище в литрах: " ></Label>
+        <TextBox x:Name="ai95OstatokTB" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
+
+        <Label Grid.Row="11" Grid.Column="1" Content="АИ-98 цена: " ></Label>
+        <TextBox x:Name="ai98CostTb" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
+
+        <Label Grid.Row="13" Grid.Column="1" Content="Остаток АИ-98 в хранилище в литрах: " ></Label>
+        <TextBox x:Name="ai98OstatokTB" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" ></TextBox>
     </Grid>
 </Window>
