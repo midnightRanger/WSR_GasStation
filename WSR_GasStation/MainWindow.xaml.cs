@@ -30,8 +30,7 @@ namespace WSR_GasStation
         {
             InitializeComponent();
 
-            db = new StationDbContext();
-
+            db = new StationDbContext(); 
             db.Station.Load();
 
             //stations.ItemsSource = db.Station.ToList();
@@ -42,19 +41,21 @@ namespace WSR_GasStation
 
         }
 
-        private void receiveDataBTN_Click(object sender, RoutedEventArgs e) 
+        private void receiveDataBTN_Click(object sender, RoutedEventArgs e)
         {
-            int id = 0; 
+            int id = 0;
             try
             {
                 id = Convert.ToInt32(stationIdTB.Text);
             }
-            catch (Exception ex) {
-                MessageBox.Show($"Что-то пошло не так. Ошибка: {ex.Message}" , "Ошибка!", MessageBoxButton.OK);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Что-то пошло не так. Ошибка: {ex.Message}", "Ошибка!", MessageBoxButton.OK);
                 stationIdTB.Text = "";
             }
 
-            if (id > 99 || id < 1) {
+            if (id > 99 || id < 1)
+            {
                 MessageBox.Show($"Значение ID должно быть от 1 до 99", "Ошибка!", MessageBoxButton.OK);
             }
 
@@ -105,14 +106,16 @@ namespace WSR_GasStation
 
                 }
             }
-            else {
-                CleanFields(); 
+            else
+            {
+                CleanFields();
             }
 
-            addressTB.Text = station.Address; 
+            addressTB.Text = station.Address;
         }
 
-        public void CleanFields() {
+        public void CleanFields()
+        {
             ai98CostTb.Text = "";
             ai98OstatokTB.Text = "";
 
@@ -128,12 +131,12 @@ namespace WSR_GasStation
 
         public bool isEmpty(string str) => String.IsNullOrWhiteSpace(str) && String.IsNullOrEmpty(str);
 
-        public bool isEmptyFields() 
+        public bool isEmptyFields()
         {
             if (isEmpty(ai98CostTb.Text) || isEmpty(ai98OstatokTB.Text) ||
                  isEmpty(ai95OstatokTB.Text) || isEmpty(ai95OstatokTB.Text) ||
                  isEmpty(ai92OstatokTB.Text) || isEmpty(ai92CostTB.Text) || isEmpty(aiDTCostTB.Text) || isEmpty(aiDTOstatokTB.Text)) return true;
-            return false; 
+            return false;
         }
 
         private void sendChangesBTN_Click(object sender, RoutedEventArgs e)
@@ -159,7 +162,7 @@ namespace WSR_GasStation
 
                     db.SaveChanges();
 
-                    MessageBox.Show("Данные добавлены!", "Уведомление", MessageBoxButton.OK); 
+                    MessageBox.Show("Данные добавлены!", "Уведомление", MessageBoxButton.OK);
                 }
                 else
                 {
@@ -204,14 +207,16 @@ namespace WSR_GasStation
                         db.Station.Update(station);
                         db.SaveChanges();
 
-                        MessageBox.Show("Данные обновлены!", "Уведомление", MessageBoxButton.OK);
+
                     }
+                    MessageBox.Show("Данные обновлены!", "Уведомление", MessageBoxButton.OK);
 
 
                 }
             }
-            else {
-                MessageBox.Show("Одно или несколько полей не заполнены!", "Проблема!", MessageBoxButton.OK); 
+            else
+            {
+                MessageBox.Show("Одно или несколько полей не заполнены!", "Проблема!", MessageBoxButton.OK);
             }
         }
     }
