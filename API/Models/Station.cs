@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSR_GasStation.Domain.Models;
 
-namespace WSR_GasStation.Domain.Models
-{
+namespace WSR_GasStation.Models {
     public class Station
-    {
+    { 
         public int ID_Station { get; set; }
         public string Address { get; set; }
 
